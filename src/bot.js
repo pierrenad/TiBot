@@ -35,12 +35,12 @@ client.once('ready', async () => {
     }
 
     var guildFound;
-    var server; 
+    var server;
     client.guilds.cache.forEach(async (guild) => {
         var dbServer = await cli.query(`SELECT * FROM servers WHERE id=${guild.id};`);
         if (dbServer.rows.length) {
             guildFound = dbServer.rows[0];
-            servers[guild.id] = { 
+            servers[guild.id] = {
                 queue: [],
                 channels: guildFound.channels,
                 roles: guildFound.roles,
@@ -64,7 +64,7 @@ client.on('guildCreate', async (guild) => {
     var dbServer = await cli.query(`SELECT * FROM servers WHERE id=${guild.id};`);
     if (dbServer.rows.length) {
         guildFound = dbServer.rows[0];
-        servers[guild.id] = { 
+        servers[guild.id] = {
             queue: [],
             channels: guildFound.channels,
             roles: guildFound.roles,
@@ -72,9 +72,9 @@ client.on('guildCreate', async (guild) => {
         }
     }
     if (!guildFound) {
-        await cli.query(`INSERT INTO servers VALUES (${guild.id}, '{"items": []}', '{"items": []}', '{"items": []}', '$');`); 
+        await cli.query(`INSERT INTO servers VALUES (${guild.id}, '{"items": []}', '{"items": []}', '{"items": []}', '$');`);
         var infos = await cli.query(`SELECT * FROM servers WHERE id=${guild.id};`);
-        servers[guild.id] = { 
+        servers[guild.id] = {
             queue: [],
             channels: infos.rows[0].channels,
             roles: infos.rows[0].roles,
@@ -88,26 +88,19 @@ client.on('guildCreate', async (guild) => {
         .setColor(0xff0000)
         .setThumbnail(client.user.avatarURL())
         .addField(
-            'Configuration', `N\'hésitez pas à consulter l\'aide via la commande ${server.prefix}help.\n\
-            Vous pouvez configurer les channels si vous souhaiter utiliser les options se trouvant dans ${server.prefix}helpAdmin :\n\
-            Configurez un channel de règlement si vous souhaitez que les nouveaux membres acceptent certains règles pour accéder à un rôle supérieur. \
-            Pour cela vous devrez aussi configurer le rôle affecté aux nouveaux et le rôle affecté à ceux qui ont accepté les règles\n\n\
-            Channel ai permet de faire des appels au bot (ex: musique, etc)\n\n\
-            Channel assisstant est le channel va annoncer des événements (ex: arrivée d'un nouveau membre)\n\n\
-            Tout ceci n'est pas obligatoire, vous pouvez utiliser le bot sans devoir tout configurer.`
+            'Configuration', `N\'hésitez pas à consulter l\'aide via la commande ${server.prefix}help.\n`
         );
-    await guild.systemChannel.send(embed);
-    // await guild.channels.cache.find(chan => chan.type === 'text').send(embed);
+    try {
+        await guild.systemChannel.send(embed);
+    }
+    catch (e) {
+        await guild.channels.cache.find(chan => chan.type === 'text').send(embed);
+    }
 });
 
 // new member get a role and send message to welcome the member
 client.on('guildMemberAdd', async function (member) {
     if (member.user.bot) return;
-    var server = servers[member.guild.id];
-    if (server.roles.items.find(item => item.name === 'newMember')) { // if new member role is set 
-        const role = member.guild.roles.cache.find(role => role.id === server.roles.items.find(item => item.name === 'newMember').id);
-        member.roles.add(role);
-    }
     const embed = new Discord.MessageEmbed()
         .setAuthor(member.user.tag, member.user.avatarURL())
         .setColor(0xff0000)
