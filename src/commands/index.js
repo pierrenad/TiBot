@@ -1,6 +1,5 @@
 const servers = require('../bot').servers;
 const help = require('./help');
-const helpAdmin = require('./help');
 const eightBall = require('./8ball');
 const play = require('./music');
 const leave = require('./music');
@@ -12,7 +11,6 @@ const clearqueue = require('./music');
 
 const commands = {
     help,
-    helpAdmin,
     '8ball': eightBall,
     play,
     pause,

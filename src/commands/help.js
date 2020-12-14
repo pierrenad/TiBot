@@ -4,7 +4,7 @@ const servers = require('../bot').servers;
 module.exports = async (msg, args, command) => {
     var server = servers[msg.guild.id];
     const embed = new Discord.MessageEmbed()
-        .setTitle('MaidBot Help')
+        .setTitle('TiBot Help')
         .setColor(0xff0000)
         .addFields(
             {
