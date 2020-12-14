@@ -8,6 +8,7 @@ const resume = require('./music');
 const skip = require('./music');
 const queue = require('./music');
 const clearqueue = require('./music');
+const ip = require('./ip');
 
 const commands = {
     help,
@@ -19,6 +20,7 @@ const commands = {
     skip,
     queue,
     clearqueue,
+    ip,
 }
 
 module.exports = async (msg) => {

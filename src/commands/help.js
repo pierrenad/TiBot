@@ -16,6 +16,7 @@ module.exports = async (msg, args, command) => {
                     **'+ server.prefix + 'leave**\tQuitte le channel vocal.\n\
                     **'+ server.prefix + 'queue**\tPermet de visualiser les titres ajoutés dans la queue.\n\
                     **'+ server.prefix + 'clearqueue**\tPermet de vider la queue.\n\
+                    **'+ server.prefix + 'ip**\tCalcule le range d\'ips.\n\
                     **'+ server.prefix + '8ball**\tRépond à votre question.\n'
             }
         );
