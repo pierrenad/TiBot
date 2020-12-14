@@ -15,7 +15,6 @@ const pool = new Pool({
     }
 });
 const prefix = ['³'];
-// exports.prefix = prefix;
 const servers = {};
 exports.servers = servers;
 
@@ -72,7 +71,7 @@ client.on('guildCreate', async (guild) => {
         }
     }
     if (!guildFound) {
-        await cli.query(`INSERT INTO servers VALUES (${guild.id}, '{"items": []}', '{"items": []}', '{"items": []}', '$');`);
+        await cli.query(`INSERT INTO servers VALUES (${guild.id}, '{"items": []}', '{"items": []}', '{"items": []}', '³');`);
         var infos = await cli.query(`SELECT * FROM servers WHERE id=${guild.id};`);
         servers[guild.id] = {
             queue: [],
