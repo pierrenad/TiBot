@@ -52,7 +52,8 @@ async function play(connection, msg) {
                         default:
                     }
                 }
-                reaction.users.remove(user.id);
+                else
+                    reaction.users.remove(user.id);
             }
         });
         lastSent = sent;
@@ -224,7 +225,6 @@ module.exports = async (msg, args, command) => {
                         .setDescription(theResult.title)
                         .setTitle("Added to the queue");
                     msg.channel.send(embed).then(sent => {
-                        console.log(lastSentMusicAdded);
                         if (lastSentMusicAdded) {
                             if (msg.channel.messages.cache.find(message => message.id === lastSentMusicAdded.id))
                                 msg.channel.messages.cache.find(message => message.id === lastSentMusicAdded.id).delete();
