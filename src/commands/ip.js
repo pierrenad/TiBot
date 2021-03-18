@@ -4,7 +4,6 @@ var deciBin = require('decimal-to-binary');
 
 module.exports = async (msg, args, command) => {
     var server = servers[msg.guild.id];
-    // await msg.channel.send('Ca fonctionne 😊');
 
     // get arguments
     var ipMask = args[0].split('/');
@@ -48,11 +47,11 @@ module.exports = async (msg, args, command) => {
     } else if (mask <= 16) {
         maskBin[0] = '11111111';
         mask -= 8;
+        maskBin[1] = '';
         for (var i = 0; i < mask; i++) {
             maskBin[1] += '1';
         }
         mask = 8 - mask;
-        maskBin[1] = '';
         for (var i = 0; i < mask; i++) {
             maskBin[1] += '0';
         }
