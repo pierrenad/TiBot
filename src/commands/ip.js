@@ -1,9 +1,7 @@
 const Discord = require('discord.js');
-const servers = require('../bot').servers;
 var deciBin = require('decimal-to-binary');
 
 module.exports = async (msg, args, command) => {
-    var server = servers[msg.guild.id];
 
     // get arguments
     var ipMask = args[0].split('/');
@@ -38,7 +36,7 @@ module.exports = async (msg, args, command) => {
             maskBin[0] += '1';
         }
         mask = 8 - mask;
-        for (var i = 0; i < calcul; i++) {
+        for (var i = 0; i < mask; i++) {
             maskBin[0] += '0';
         }
         maskBin[1] = '00000000';

@@ -9,7 +9,7 @@ const skip = require('./music');
 const queue = require('./music');
 const clearqueue = require('./music');
 const ip = require('./ip');
-//const search  = require('./search');
+const timeLeft = require('./timeLeft');
 
 const commands = {
     help,
@@ -22,7 +22,7 @@ const commands = {
     queue,
     clearqueue,
     ip,
-    //search,
+    timeleft: timeLeft,
 }
 
 module.exports = async (msg) => {
@@ -31,7 +31,7 @@ module.exports = async (msg) => {
     const args = msg.content.split(' '); // split with spaces 
     if (args.length == 0 || args[0].charAt(0) !== server.prefix) return;
     // if (args.length == 0 || args[0].charAt(0) !== server.prefix && args[0].charAt(0) !== '/') return; // for the tests
-    const command = args.shift().substr(1); // remove first argument from the array and remove '!'
+    const command = args.shift().substr(1).toLowerCase(); // remove first argument from the array and remove '!'
     if (Object.keys(commands).includes(command)) {
         commands[command](msg, args, command);
     }

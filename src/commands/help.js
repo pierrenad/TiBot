@@ -15,8 +15,9 @@ module.exports = async (msg, args, command) => {
                     **'+ server.prefix + 'resume**\tReprend la musique.\n\
                     **'+ server.prefix + 'leave**\tQuitte le channel vocal.\n\
                     **'+ server.prefix + 'queue**\tPermet de visualiser les titres ajoutés dans la queue.\n\
-                    **'+ server.prefix + 'clearqueue**\tPermet de vider la queue.\n\
+                    **'+ server.prefix + 'clearQueue**\tPermet de vider la queue.\n\
                     **'+ server.prefix + 'ip**\tCalcule le range d\'ips.\n\
+                    **'+ server.prefix + 'timeLeft**\tTemps restant avant que le bot ne sois down.\n\
                     **'+ server.prefix + '8ball**\tRépond à votre question.\n'
             }
         );

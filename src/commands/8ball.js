@@ -6,7 +6,9 @@ const eightBall = [
     'Concentrate and ask again.',
     'Dont\'t count on it.',
     'It is certain',
-    'It is decidely so.'
+    'It is decidely so.',
+    '42',
+    '17'
 ]
 
 module.exports = async (msg, args) => {
