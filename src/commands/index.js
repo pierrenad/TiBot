@@ -10,6 +10,7 @@ const queue = require('./music');
 const clearqueue = require('./music');
 const ip = require('./ip');
 const timeLeft = require('./timeLeft');
+const say = require('./say');
 
 const commands = {
     help,
@@ -22,7 +23,8 @@ const commands = {
     queue,
     clearqueue,
     ip,
-    timeleft: timeLeft,
+    //timeleft: timeLeft,
+    say,
 }
 
 module.exports = async (msg) => {
