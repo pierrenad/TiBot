@@ -7,6 +7,7 @@ module.exports = async (msg, args, command) => {
     totalSentence.replace(" .", ".");
     totalSentence.replace(" ?", "?");
 
+    //var user = message.mentions.users;
     var sentences = totalSentence.match(/[^.!?]+.?|./g);
     var words;
     var letters;
